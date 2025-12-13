@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meine Playlists</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="brand">
+        <h1>Meine YouTube Playlists</h1>
+        <p>Premium Übersicht mit Thumbnails, Suche & Duplikat-Schutz.</p>
+      </div>
+
+      <div class="controls">
+        <input id="q" class="input" placeholder="Suchen (Titel / Kanal) …" />
+        <select id="sort" class="select">
+          <option value="recent">Neueste zuerst</option>
+          <option value="az">A → Z</option>
+          <option value="count">Meiste Videos</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="status" class="footerNote"></div>
+    <div id="grid" class="grid"></div>
+
+    <div class="footerNote">
+      Tipp: Links in <code>playlists.txt</code> einfügen (eine pro Zeile). Duplikate werden automatisch entfernt.
+    </div>
+  </div>
+
+  <div id="modal" class="modalOverlay" role="dialog" aria-modal="true">
+    <div class="modal">
+      <div class="modalTop">
+        <strong id="modalTitle">Playlist</strong>
+        <button id="close" class="closeBtn">Schließen</button>
+      </div>
+      <div class="modalBody">
+        <iframe id="player" class="embed" allowfullscreen></iframe>
+        <div id="modalMeta" class="desc"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
