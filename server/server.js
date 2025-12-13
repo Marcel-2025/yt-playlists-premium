@@ -5,6 +5,14 @@ import "dotenv/config";
 const app = express();
 app.use(cors());
 
+app.get("/", (req, res) => {
+  res.status(200).send("yt-playlists-premium proxy is running ✅");
+});
+
+app.get("/health", (req, res) => {
+  res.status(200).json({ ok: true });
+});
+
 const API_KEY = process.env.YOUTUBE_API_KEY;
 if (!API_KEY) {
   console.warn("⚠️  Missing YOUTUBE_API_KEY in .env");
