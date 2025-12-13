@@ -1,4 +1,4 @@
-const PROXY_BASE = "http://localhost:8787"; // Backend-Port
+const PROXY_BASE = ""; // Backend-Port
 const grid = document.getElementById("grid");
 const statusEl = document.getElementById("status");
 const qEl = document.getElementById("q");
