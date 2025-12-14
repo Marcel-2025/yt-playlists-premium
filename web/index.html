@@ -11,12 +11,13 @@
     <div class="header">
       <div class="brand">
         <h1>Meine YouTube Playlists</h1>
-        <p>Premium Übersicht mit Thumbnails, Suche & Duplikat-Schutz.</p>
+        <p>Premium Übersicht mit Sync, Featured, Suche & Duplikat-Schutz.</p>
       </div>
 
       <div class="controls">
         <input id="q" class="input" placeholder="Suchen (Titel / Kanal) …" />
         <select id="sort" class="select">
+          <option value="featured">Featured zuerst</option>
           <option value="recent">Neueste zuerst</option>
           <option value="az">A → Z</option>
           <option value="count">Meiste Videos</option>
@@ -24,35 +25,42 @@
       </div>
     </div>
 
-    <!-- NEU: Links direkt auf der Seite einfügen -->
-    <div style="margin-bottom: 16px;">
-      <textarea
-        id="playlistInput"
-        class="input"
-        rows="3"
-        placeholder="YouTube Playlist-Links hier einfügen (eine pro Zeile)&#10;Beispiel: https://www.youtube.com/playlist?list=PLxxxx"
-        style="width: 100%; resize: vertical;"
-      ></textarea>
-
-      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
-        <button id="addPlaylists" class="closeBtn">Playlists laden</button>
-        <button id="clearPlaylists" class="closeBtn" style="opacity:.9;">Alle löschen</button>
+    <!-- Top bar -->
+    <div class="topbar">
+      <div class="auth">
+        <div class="pill" id="authState">Nicht eingeloggt</div>
+        <button class="btn" id="btnAnon">Anon Login</button>
+        <button class="btn" id="btnGoogle">Google Login</button>
+        <button class="btn" id="btnLogout" style="display:none;">Logout</button>
       </div>
 
-      <div class="footerNote" style="margin-top:10px;">
-        Deine Links werden im Browser gespeichert (LocalStorage). Duplikate werden automatisch entfernt.
+      <div class="actions">
+        <button class="btn primary" id="openAdd">+ Playlists hinzufügen</button>
       </div>
     </div>
 
     <div id="status" class="footerNote"></div>
+
+    <!-- Featured area -->
+    <div id="featuredWrap" style="display:none;">
+      <div class="sectionTitle">⭐ Featured</div>
+      <div id="featuredCard"></div>
+    </div>
+
+    <div class="sectionTitle" style="margin-top:14px;">Alle Playlists</div>
     <div id="grid" class="grid"></div>
+
+    <div class="footerNote" style="margin-top:16px;">
+      Sync läuft über Firebase Auth + Firestore. Duplikate werden per Playlist-ID verhindert.
+    </div>
   </div>
 
-  <div id="modal" class="modalOverlay" role="dialog" aria-modal="true">
+  <!-- Player modal -->
+  <div id="playerModal" class="modalOverlay" role="dialog" aria-modal="true">
     <div class="modal">
       <div class="modalTop">
         <strong id="modalTitle">Playlist</strong>
-        <button id="close" class="closeBtn">Schließen</button>
+        <button id="closePlayer" class="btn">Schließen</button>
       </div>
       <div class="modalBody">
         <iframe id="player" class="embed" allowfullscreen></iframe>
@@ -61,6 +69,37 @@
     </div>
   </div>
 
-  <script src="./app.js"></script>
+  <!-- Add modal (mobile-friendly bottom sheet) -->
+  <div id="addModal" class="sheetOverlay" role="dialog" aria-modal="true">
+    <div class="sheet">
+      <div class="sheetHeader">
+        <div>
+          <div class="sheetTitle">Playlists hinzufügen</div>
+          <div class="sheetSub">Eine pro Zeile. Duplikate werden automatisch ignoriert.</div>
+        </div>
+        <button class="btn" id="closeAdd">Schließen</button>
+      </div>
+
+      <textarea
+        id="playlistInput"
+        class="input"
+        rows="6"
+        placeholder="https://www.youtube.com/playlist?list=PLxxxx&#10;https://www.youtube.com/playlist?list=PLyyyy"
+        style="width:100%; resize:vertical;"
+      ></textarea>
+
+      <div class="sheetActions">
+        <button class="btn primary" id="addPlaylists">Hinzufügen & Sync</button>
+        <button class="btn" id="clearAll">Alle löschen</button>
+      </div>
+
+      <div class="footerNote" style="margin-top:10px;">
+        Tipp: Du kannst auch mehrere Links auf einmal reinkopieren.
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase (CDN Modules) + App -->
+  <script type="module" src="./app.js"></script>
 </body>
 </html>
