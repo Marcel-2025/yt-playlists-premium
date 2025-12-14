@@ -24,12 +24,28 @@
       </div>
     </div>
 
+    <!-- NEU: Links direkt auf der Seite einfügen -->
+    <div style="margin-bottom: 16px;">
+      <textarea
+        id="playlistInput"
+        class="input"
+        rows="3"
+        placeholder="YouTube Playlist-Links hier einfügen (eine pro Zeile)&#10;Beispiel: https://www.youtube.com/playlist?list=PLxxxx"
+        style="width: 100%; resize: vertical;"
+      ></textarea>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+        <button id="addPlaylists" class="closeBtn">Playlists laden</button>
+        <button id="clearPlaylists" class="closeBtn" style="opacity:.9;">Alle löschen</button>
+      </div>
+
+      <div class="footerNote" style="margin-top:10px;">
+        Deine Links werden im Browser gespeichert (LocalStorage). Duplikate werden automatisch entfernt.
+      </div>
+    </div>
+
     <div id="status" class="footerNote"></div>
     <div id="grid" class="grid"></div>
-
-    <div class="footerNote">
-      Tipp: Links in <code>playlists.txt</code> einfügen (eine pro Zeile). Duplikate werden automatisch entfernt.
-    </div>
   </div>
 
   <div id="modal" class="modalOverlay" role="dialog" aria-modal="true">
