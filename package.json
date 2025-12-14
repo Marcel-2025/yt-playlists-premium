@@ -1,0 +1,11 @@
+{
+  "name": "yt-playlists-premium",
+  "private": true,
+  "scripts": {
+    "build": "cd server && npm ci",
+    "start": "node server/server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
