@@ -277,3 +277,28 @@ body {
   .btn { padding: 12px 14px; }
   .iconBtn { width: 44px; height: 38px; }
 }
+
+/* Banner */
+.banner{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(10px);
+  margin: 10px 0 14px;
+}
+.bannerSub{
+  color: rgba(255,255,255,0.62);
+  font-size: 12px;
+  margin-top: 2px;
+}
+.bannerActions{
+  display:flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}

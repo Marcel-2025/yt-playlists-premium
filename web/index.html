@@ -11,7 +11,7 @@
     <div class="header">
       <div class="brand">
         <h1>Meine YouTube Playlists</h1>
-        <p>Premium Übersicht mit Sync, Featured, Suche & Duplikat-Schutz.</p>
+        <p>Premium Übersicht mit Sync, Featured, Share-Link, Stats.</p>
       </div>
 
       <div class="controls">
@@ -25,23 +25,36 @@
       </div>
     </div>
 
-    <!-- Top bar -->
     <div class="topbar">
       <div class="auth">
-        <div class="pill" id="authState">Nicht eingeloggt</div>
-        <button class="btn" id="btnAnon">Anon Login</button>
+        <div class="pill" id="authState">Verbinde…</div>
+        <div class="pill" id="statsPill">📊 –</div>
+
         <button class="btn" id="btnGoogle">Google Login</button>
         <button class="btn" id="btnLogout" style="display:none;">Logout</button>
       </div>
 
       <div class="actions">
-        <button class="btn primary" id="openAdd">+ Playlists hinzufügen</button>
+        <button class="btn" id="openShare">🔗 Share</button>
+        <button class="btn primary" id="openAdd">+ Playlists</button>
+      </div>
+    </div>
+
+    <!-- Share banner (wenn Link geöffnet wurde) -->
+    <div id="shareBanner" class="banner" style="display:none;">
+      <div>
+        <strong>Share-Link erkannt</strong>
+        <div class="bannerSub" id="shareBannerText">Du kannst die Playlists importieren.</div>
+      </div>
+      <div class="bannerActions">
+        <button class="btn primary" id="importMerge">Import (Merge)</button>
+        <button class="btn" id="importReplace">Replace</button>
+        <button class="btn" id="dismissShare">Ignorieren</button>
       </div>
     </div>
 
     <div id="status" class="footerNote"></div>
 
-    <!-- Featured area -->
     <div id="featuredWrap" style="display:none;">
       <div class="sectionTitle">⭐ Featured</div>
       <div id="featuredCard"></div>
@@ -51,7 +64,7 @@
     <div id="grid" class="grid"></div>
 
     <div class="footerNote" style="margin-top:16px;">
-      Sync läuft über Firebase Auth + Firestore. Duplikate werden per Playlist-ID verhindert.
+      Auto-Login läuft anonym. Google Login optional, wenn du auf mehreren Geräten Sync willst.
     </div>
   </div>
 
@@ -69,7 +82,7 @@
     </div>
   </div>
 
-  <!-- Add modal (mobile-friendly bottom sheet) -->
+  <!-- Add modal -->
   <div id="addModal" class="sheetOverlay" role="dialog" aria-modal="true">
     <div class="sheet">
       <div class="sheetHeader">
@@ -94,12 +107,33 @@
       </div>
 
       <div class="footerNote" style="margin-top:10px;">
-        Tipp: Du kannst auch mehrere Links auf einmal reinkopieren.
+        Tipp: Du kannst mehrere Links auf einmal reinkopieren.
       </div>
     </div>
   </div>
 
-  <!-- Firebase (CDN Modules) + App -->
+  <!-- Share modal -->
+  <div id="shareModal" class="sheetOverlay" role="dialog" aria-modal="true">
+    <div class="sheet">
+      <div class="sheetHeader">
+        <div>
+          <div class="sheetTitle">Share-Link</div>
+          <div class="sheetSub">Teile deine Playlist-Sammlung per Link.</div>
+        </div>
+        <button class="btn" id="closeShare">Schließen</button>
+      </div>
+
+      <input id="shareUrl" class="input" style="width:100%;" readonly />
+      <div class="sheetActions">
+        <button class="btn primary" id="copyShare">Link kopieren</button>
+      </div>
+
+      <div class="footerNote" style="margin-top:10px;">
+        Hinweis: Der Link enthält deine Playlist-IDs + Featured-Info (keine Secrets).
+      </div>
+    </div>
+  </div>
+
   <script type="module" src="./app.js"></script>
 </body>
 </html>
