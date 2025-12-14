@@ -302,3 +302,89 @@ body {
   gap: 10px;
   flex-wrap: wrap;
 }
+
+/* =========================
+   GENERIC MODAL FIX
+   ========================= */
+
+/* Overlay bleibt gleich */
+.modalOverlay,
+.sheetOverlay {
+  padding: 24px;              /* Abstand zum Viewport */
+  box-sizing: border-box;
+}
+
+/* -------------------------
+   PLAYER MODAL
+   ------------------------- */
+.modal {
+  width: min(1100px, 96vw);   /* 🔹 breiter */
+  max-height: calc(100vh - 48px); /* 🔹 oben & unten Luft */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;          /* wichtig für inner scroll */
+}
+
+/* Header bleibt fix */
+.modalTop {
+  flex-shrink: 0;
+}
+
+/* NUR Inhalt scrollt */
+.modalBody {
+  overflow-y: auto;
+  padding: 16px;
+}
+
+/* Video bleibt sichtbar */
+.embed {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+  flex-shrink: 0;
+}
+
+/* -------------------------
+   ADD / SHARE BOTTOM SHEET
+   ------------------------- */
+.sheet {
+  width: min(1100px, 96vw);   /* 🔹 breiter */
+  max-height: calc(100vh - 48px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header fix */
+.sheetHeader {
+  flex-shrink: 0;
+}
+
+/* Content scrollbar */
+.sheet textarea,
+.sheet .sheetActions,
+.sheet .footerNote {
+  flex-shrink: 0;
+}
+
+/* Scroll-Container */
+.sheet {
+  overflow-y: auto;
+}
+
+/* -------------------------
+   MOBILE TUNING
+   ------------------------- */
+@media (max-width: 640px) {
+  .modal,
+  .sheet {
+    width: 100%;
+    max-height: calc(100vh - 24px);
+    border-radius: 18px;
+  }
+
+  .modalOverlay,
+  .sheetOverlay {
+    padding: 12px;
+  }
+}
